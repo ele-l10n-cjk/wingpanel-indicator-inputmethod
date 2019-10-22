@@ -1,0 +1,4 @@
+src/Indicator.vala
+src/InputMethodIcon.vala
+src/LayoutButton.vala
+src/LayoutsManager.vala
