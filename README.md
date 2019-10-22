@@ -11,7 +11,7 @@ This project tries to address https://github.com/elementary/os/issues/103.
 ### For Users
 
     sudo add-apt-repository ppa:ryonakaknock3/ele-l10n-cjk
-    sudo apt install switchboard-plug-inputmethod
+    sudo apt install wingpanel-indicator-inputmethod
 
 If you have never added a PPA before, you might need to run this command first: 
 
