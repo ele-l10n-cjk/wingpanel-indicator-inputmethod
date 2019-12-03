@@ -4,7 +4,7 @@
 
 First of all, fork this repository on GitHub. Next, clone the forked repository to local:
 
-    git clone https://github.com/ele-l10n-cjk/wingpanel-indicator-inputmethod.git
+    git clone https://github.com/your-username/wingpanel-indicator-inputmethod.git
 
 ## Add Your Language Code to LINGUAS Files
 
