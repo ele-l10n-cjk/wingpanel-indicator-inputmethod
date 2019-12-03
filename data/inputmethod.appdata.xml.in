@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 Ryo Nakano <ryonakaknock3@gmail.com> -->
+<component type="addon">
+  <id>io.elementary.wingpanel.inputmethod</id>
+  <extends>io.elementary.wingpanel</extends>
+  <name>Input Method Indicator</name>
+  <summary>The input method indicator</summary>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/ele-l10n-cjk/wingpanel-indicator-inputmethod/master/data/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+  <developer_name>CJK Kaizen Project for elementary OS (Unofficial)</developer_name>
+  <url type="homepage">https://github.com/ele-l10n-cjk</url>
+  <url type="bugtracker">https://github.com/ele-l10n-cjk/wingpanel-indicator-inputmethod/issues</url>
+  <url type="help">https://github.com/ele-l10n-cjk/wingpanel-indicator-inputmethod/issues</url>
+  <url type="translate">https://github.com/ele-l10n-cjk/wingpanel-indicator-inputmethod</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+</component>

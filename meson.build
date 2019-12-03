@@ -46,4 +46,12 @@ shared_module(
     install_dir : wingpanel_indicatorsdir
 )
 
+i18n.merge_file(
+    input: 'data/inputmethod.appdata.xml.in',
+    output: 'io.elementary.wingpanel.inputmethod.appdata.xml',
+    po_dir: join_paths(meson.source_root (), 'po', 'extra'),
+    install_dir: join_paths(get_option('datadir'), 'metainfo'),
+    install: true
+)
+
 subdir('po')
