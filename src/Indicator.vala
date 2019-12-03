@@ -48,6 +48,9 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             });
 
             layouts.updated ();
+
+            var ibus_panel_settings = new Settings ("org.freedesktop.ibus.panel");
+            ibus_panel_settings.bind ("show-icon-on-systray", this, "visible", SettingsBindFlags.DEFAULT);
         }
 
         return display_icon;
