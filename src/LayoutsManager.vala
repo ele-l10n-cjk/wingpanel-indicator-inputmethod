@@ -79,11 +79,10 @@ public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
         foreach (var source in source_list) {
             string? name;
             string language;
-            string? variant = null;
             language = source;
             name = source;
 
-            layout_button = new LayoutButton (name, language, variant, i, settings, layout_button);
+            layout_button = new LayoutButton (name, language, i, layout_button);
             main_grid.add (layout_button);
             i++;
         }

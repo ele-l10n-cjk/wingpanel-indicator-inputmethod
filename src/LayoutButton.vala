@@ -20,10 +20,9 @@ public class InputMethod.Widgets.LayoutButton : Wingpanel.Widgets.Container {
     public uint32 id;
     public string caption;
     public string code;
-    public string? variant;
-    public Gtk.RadioButton radio_button { private set; public get; }
+    public Gtk.RadioButton radio_button { get; private set; }
 
-    public LayoutButton (string caption, string code, string? variant, uint32 id, GLib.Settings settings, LayoutButton? layout_button) {
+    public LayoutButton (string caption, string code, uint32 id, LayoutButton? layout_button) {
         radio_button = new Gtk.RadioButton.with_label_from_widget ((layout_button != null) ? layout_button.radio_button : null, caption);
         radio_button.active = (id == 0);
         radio_button.margin_start = 6;
@@ -32,7 +31,6 @@ public class InputMethod.Widgets.LayoutButton : Wingpanel.Widgets.Container {
         this.id = id;
         this.caption = caption;
         this.code = code;
-        this.variant = variant;
 
         this.clicked.connect (() => {
             try {
