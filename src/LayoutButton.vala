@@ -33,13 +33,11 @@ public class InputMethod.Widgets.LayoutButton : Wingpanel.Widgets.Container {
         this.variant = variant;
 
         this.clicked.connect (() => {
-            // TODO: Support switching engines
-            //  settings.set_strv ("preload-engines", id);
-        });
-
-        settings.changed["preload-engines"].connect (() => {
-            if (id == 0) {
-                radio_button.active = true;
+            try {
+                Process.spawn_command_line_sync ("ibus engine %s".printf (caption));
+                radio_button.active = !radio_button.active;
+            } catch (SpawnError err) {
+                warning (err.message);
             }
         });
     }
