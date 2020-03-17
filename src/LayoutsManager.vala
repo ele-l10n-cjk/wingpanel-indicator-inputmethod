@@ -91,7 +91,7 @@ public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
         main_grid.show_all ();
     }
 
-    private LayoutButton? get_current_layout_button () {
+    public LayoutButton? get_current_layout_button () {
         string source = settings.get_strv ("engines-order")[0];
         LayoutButton? layout_button = null;
 
@@ -105,20 +105,6 @@ public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
         });
 
         return layout_button;
-    }
-
-    public string get_current (bool shorten = false) {
-        string current = "us";
-        var button = get_current_layout_button ();
-        if (button != null) {
-            current = button.code;
-        }
-
-        if (shorten) {
-            return current[0:2];
-        } else {
-            return current;
-        }
     }
 
     public void next () {

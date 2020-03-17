@@ -40,7 +40,12 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
 
             layouts = new InputMethod.Widgets.LayoutManager ();
             layouts.updated.connect (() => {
-                display_icon.label = layouts.get_current (true);
+                Widgets.LayoutButton? current_button = layouts.get_current_layout_button ();
+                if (current_button != null) {
+                    display_icon.label = current_button.code[0:2];
+                    current_button.radio_button.active = true;
+                }
+
                 var new_visibility = layouts.has_layouts ();
                 if (new_visibility != visible) {
                     visible = new_visibility;
