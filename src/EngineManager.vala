@@ -22,19 +22,6 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
     private GLib.Settings settings;
     private Gtk.Grid main_grid;
 
-    private string[] _active_engines;
-    // Stores currently activated engines
-    public string[] active_engines {
-        get {
-            _active_engines = settings.get_strv ("preload-engines");
-            return _active_engines;
-        }
-        set {
-            settings.set_strv ("preload-engines", value);
-            settings.set_strv ("engines-order", value);
-        }
-    }
-
     public EngineManager () {
         populate_layouts ();
     }
