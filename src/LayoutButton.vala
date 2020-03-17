@@ -18,6 +18,7 @@
 
 public class InputMethod.Widgets.LayoutButton : Wingpanel.Widgets.Container {
     public uint32 id;
+    public string caption;
     public string code;
     public string? variant;
     public Gtk.RadioButton radio_button { private set; public get; }
@@ -29,6 +30,7 @@ public class InputMethod.Widgets.LayoutButton : Wingpanel.Widgets.Container {
         get_content_widget ().add (radio_button);
 
         this.id = id;
+        this.caption = caption;
         this.code = code;
         this.variant = variant;
 
