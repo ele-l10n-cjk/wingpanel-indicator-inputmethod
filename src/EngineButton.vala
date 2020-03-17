@@ -16,14 +16,14 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class InputMethod.Widgets.LayoutButton : Wingpanel.Widgets.Container {
+public class InputMethod.Widgets.EngineButton : Wingpanel.Widgets.Container {
     public uint32 id;
     public string caption;
     public string code;
     public Gtk.RadioButton radio_button { get; private set; }
 
-    public LayoutButton (string caption, string code, uint32 id, LayoutButton? layout_button) {
-        radio_button = new Gtk.RadioButton.with_label_from_widget ((layout_button != null) ? layout_button.radio_button : null, caption);
+    public EngineButton (string caption, string code, uint32 id, EngineButton? engine_button) {
+        radio_button = new Gtk.RadioButton.with_label_from_widget ((engine_button != null) ? engine_button.radio_button : null, caption);
         radio_button.active = (id == 0);
         radio_button.margin_start = 6;
         get_content_widget ().add (radio_button);

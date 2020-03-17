@@ -16,7 +16,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
+public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
     public signal void updated ();
 
     private GLib.Settings settings;
@@ -35,7 +35,7 @@ public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
         }
     }
 
-    public LayoutManager () {
+    public EngineManager () {
         populate_layouts ();
     }
 
@@ -74,7 +74,7 @@ public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
 
     private void populate_layouts () {
         string[] source_list = settings.get_strv ("preload-engines");
-        LayoutButton layout_button = null;
+        EngineButton engine_button = null;
         int i = 0;
         foreach (var source in source_list) {
             string? name;
@@ -82,28 +82,28 @@ public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
             language = source;
             name = source;
 
-            layout_button = new LayoutButton (name, language, i, layout_button);
-            main_grid.add (layout_button);
+            engine_button = new EngineButton (name, language, i, engine_button);
+            main_grid.add (engine_button);
             i++;
         }
 
         main_grid.show_all ();
     }
 
-    public LayoutButton? get_current_layout_button () {
+    public EngineButton? get_current_layout_button () {
         string source = settings.get_strv ("engines-order")[0];
-        LayoutButton? layout_button = null;
+        EngineButton? engine_button = null;
 
         main_grid.get_children ().foreach ((child) => {
-            if (child is LayoutButton) {
-                var button = (LayoutButton) child;
+            if (child is EngineButton) {
+                var button = (EngineButton) child;
                 if (button.caption == source) {
-                    layout_button = button;
+                    engine_button = button;
                 }
             }
         });
 
-        return layout_button;
+        return engine_button;
     }
 
     // FIXME: The change order is reversed once you switch input methods with ctrl + space

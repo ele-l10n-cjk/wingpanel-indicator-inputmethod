@@ -30,10 +30,10 @@ wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', 
 shared_module(
     meson.project_name(),
     gresource,
+    'src/EngineButton.vala',
+    'src/EngineManager.vala',
     'src/Indicator.vala',
     'src/InputMethodIcon.vala',
-    'src/LayoutButton.vala',
-    'src/LayoutsManager.vala',
     dependencies: [
         dependency('glib-2.0'),
         dependency('gobject-2.0'),

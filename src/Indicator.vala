@@ -19,7 +19,7 @@
 public class InputMethod.Indicator : Wingpanel.Indicator {
     private Gtk.Grid main_grid;
     private InputMethod.Widgets.InputMethodIcon display_icon;
-    private InputMethod.Widgets.LayoutManager layouts;
+    private InputMethod.Widgets.EngineManager engines;
 
     public Indicator () {
         Object (code_name: "input-method-indicator",
@@ -34,9 +34,9 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             //  display_icon.button_press_event.connect ((e) => {
             //      if (e.button == Gdk.BUTTON_MIDDLE) {
             //          if (e.state == Gdk.ModifierType.SHIFT_MASK) {
-            //              layouts.previous ();
+            //              engines.previous ();
             //          } else {
-            //              layouts.next ();
+            //              engines.next ();
             //          }
 
             //          return Gdk.EVENT_STOP;
@@ -44,21 +44,21 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             //      return Gdk.EVENT_PROPAGATE;
             //  });
 
-            layouts = new InputMethod.Widgets.LayoutManager ();
-            layouts.updated.connect (() => {
-                Widgets.LayoutButton? current_button = layouts.get_current_layout_button ();
+            engines = new InputMethod.Widgets.EngineManager ();
+            engines.updated.connect (() => {
+                Widgets.EngineButton? current_button = engines.get_current_layout_button ();
                 if (current_button != null) {
                     display_icon.label = current_button.code[0:2];
                     current_button.radio_button.active = true;
                 }
 
-                var new_visibility = layouts.has_layouts ();
+                var new_visibility = engines.has_layouts ();
                 if (new_visibility != visible) {
                     visible = new_visibility;
                 }
             });
 
-            layouts.updated ();
+            engines.updated ();
 
             var ibus_panel_settings = new Settings ("org.freedesktop.ibus.panel");
             ibus_panel_settings.bind ("show-icon-on-systray", this, "visible", SettingsBindFlags.DEFAULT);
@@ -78,7 +78,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             settings_button.text = _("Input Method Settings…");
             settings_button.clicked.connect (show_settings);
 
-            main_grid.add (layouts);
+            main_grid.add (engines);
             main_grid.add (separator);
             main_grid.add (settings_button);
             main_grid.show_all ();
