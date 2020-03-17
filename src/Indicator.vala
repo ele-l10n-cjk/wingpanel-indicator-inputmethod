@@ -30,13 +30,19 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
     public override Gtk.Widget get_display_widget () {
         if (display_icon == null) {
             display_icon = new InputMethod.Widgets.InputMethodIcon ();
-            display_icon.button_press_event.connect ((e) => {
-                if (e.button == Gdk.BUTTON_MIDDLE) {
-                    layouts.next ();
-                    return Gdk.EVENT_STOP;
-                }
-                return Gdk.EVENT_PROPAGATE;
-            });
+            // FIXME: The change order is reversed once you switch input methods with ctrl + space
+            //  display_icon.button_press_event.connect ((e) => {
+            //      if (e.button == Gdk.BUTTON_MIDDLE) {
+            //          if (e.state == Gdk.ModifierType.SHIFT_MASK) {
+            //              layouts.previous ();
+            //          } else {
+            //              layouts.next ();
+            //          }
+
+            //          return Gdk.EVENT_STOP;
+            //      }
+            //      return Gdk.EVENT_PROPAGATE;
+            //  });
 
             layouts = new InputMethod.Widgets.LayoutManager ();
             layouts.updated.connect (() => {

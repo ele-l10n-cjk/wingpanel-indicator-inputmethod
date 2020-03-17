@@ -107,15 +107,37 @@ public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
         return layout_button;
     }
 
-    public void next () {
-        //  var current = settings.get_value ("current");
-        //  var next = current.get_uint32 () + 1;
-        //  if (next >= main_grid.get_children ().length ()) {
-        //      next = 0;
-        //  }
+    // FIXME: The change order is reversed once you switch input methods with ctrl + space
+    //  public void next () {
+    //      string[] current_order = settings.get_strv ("engines-order");
+    //      string current_active_engine = current_order[0];
+    //      string new_active_engine = current_order[1];
 
-        //  settings.set_value ("current", next);
-    }
+    //      string[] new_order = {};
+    //      new_order += new_active_engine;
+    //      for (int i = 2; i < current_order.length; i++) {
+    //          new_order += current_order[i];
+    //      }
+
+    //      new_order += current_active_engine;
+
+    //      settings.set_strv ("engines-order", new_order);
+    //      updated ();
+    //  }
+
+    //  public void previous () {
+    //      string[] current_order = settings.get_strv ("engines-order");
+    //      string new_active_engine = current_order[current_order.length - 1];
+
+    //      string[] new_order = {};
+    //      new_order += new_active_engine;
+    //      for (int i = 0; i < current_order.length - 1; i++) {
+    //          new_order += current_order[i];
+    //      }
+
+    //      settings.set_strv ("engines-order", new_order);
+    //      updated ();
+    //  }
 
     public void clear () {
         main_grid.get_children ().foreach ((child) => {
