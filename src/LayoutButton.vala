@@ -18,6 +18,7 @@
 
 public class InputMethod.Widgets.LayoutButton : Wingpanel.Widgets.Container {
     public uint32 id;
+    public string caption;
     public string code;
     public string? variant;
     public Gtk.RadioButton radio_button { private set; public get; }
@@ -29,17 +30,16 @@ public class InputMethod.Widgets.LayoutButton : Wingpanel.Widgets.Container {
         get_content_widget ().add (radio_button);
 
         this.id = id;
+        this.caption = caption;
         this.code = code;
         this.variant = variant;
 
         this.clicked.connect (() => {
-            // TODO: Support switching engines
-            //  settings.set_strv ("preload-engines", id);
-        });
-
-        settings.changed["preload-engines"].connect (() => {
-            if (id == 0) {
-                radio_button.active = true;
+            try {
+                Process.spawn_command_line_sync ("ibus engine %s".printf (caption));
+                radio_button.active = !radio_button.active;
+            } catch (SpawnError err) {
+                warning (err.message);
             }
         });
     }

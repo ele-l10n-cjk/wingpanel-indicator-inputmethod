@@ -92,12 +92,13 @@ public class InputMethod.Widgets.LayoutManager : Gtk.ScrolledWindow {
     }
 
     private LayoutButton? get_current_layout_button () {
+        string source = settings.get_strv ("engines-order")[0];
         LayoutButton? layout_button = null;
 
         main_grid.get_children ().foreach ((child) => {
             if (child is LayoutButton) {
                 var button = (LayoutButton) child;
-                if (button.radio_button.active) {
+                if (button.caption == source) {
                     layout_button = button;
                 }
             }
