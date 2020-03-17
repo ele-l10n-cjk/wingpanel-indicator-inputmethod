@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2019 Ryo Nakano <ryonakaknock3@gmail.com> -->
+<!-- Copyright 2019-2020 Ryo Nakano <ryonakaknock3@gmail.com> -->
 <component type="addon">
   <id>io.elementary.wingpanel.inputmethod</id>
   <extends>io.elementary.wingpanel</extends>
