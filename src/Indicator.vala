@@ -46,13 +46,13 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
 
             engines = new InputMethod.Widgets.EngineManager ();
             engines.updated.connect (() => {
-                Widgets.EngineButton? current_button = engines.get_current_layout_button ();
+                Widgets.EngineButton? current_button = engines.get_current_engine_button ();
                 if (current_button != null) {
                     display_icon.label = current_button.code[0:2];
                     current_button.radio_button.active = true;
                 }
 
-                var new_visibility = engines.has_layouts ();
+                var new_visibility = engines.has_engines ();
                 if (new_visibility != visible) {
                     visible = new_visibility;
                 }

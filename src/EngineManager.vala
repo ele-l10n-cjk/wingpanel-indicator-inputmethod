@@ -23,7 +23,7 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
     private Gtk.Grid main_grid;
 
     public EngineManager () {
-        populate_layouts ();
+        populate_engines ();
     }
 
     construct {
@@ -36,7 +36,7 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
         settings = new GLib.Settings ("org.freedesktop.ibus.general");
         settings.changed["preload-engines"].connect (() => {
             clear ();
-            populate_layouts ();
+            populate_engines ();
             updated ();
         });
 
@@ -59,7 +59,7 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
         }
     }
 
-    private void populate_layouts () {
+    private void populate_engines () {
         string[] source_list = settings.get_strv ("preload-engines");
         EngineButton engine_button = null;
         int i = 0;
@@ -77,7 +77,7 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
         main_grid.show_all ();
     }
 
-    public EngineButton? get_current_layout_button () {
+    public EngineButton? get_current_engine_button () {
         string source = settings.get_strv ("engines-order")[0];
         EngineButton? engine_button = null;
 
@@ -131,7 +131,7 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
         });
     }
 
-    public bool has_layouts () {
+    public bool has_engines () {
         return main_grid.get_children ().length () > 1;
     }
 }
