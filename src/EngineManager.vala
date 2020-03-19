@@ -95,7 +95,7 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
         main_grid.get_children ().foreach ((child) => {
             if (child is EngineButton) {
                 var button = (EngineButton) child;
-                if (button.caption == source) {
+                if (button.code == source) {
                     engine_button = button;
                 }
             }
