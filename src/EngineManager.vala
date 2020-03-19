@@ -61,17 +61,28 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
 
     private void populate_engines () {
         string[] source_list = settings.get_strv ("preload-engines");
+#if IBUS_1_5_19
+        List<IBus.EngineDesc?> engines = new IBus.Bus ().list_engines ();
+#else
+        List<unowned IBus.EngineDesc?> engines = new IBus.Bus ().list_engines ();
+#endif
+
         EngineButton engine_button = null;
         int i = 0;
-        foreach (var source in source_list) {
-            string? name;
-            string language;
-            language = source;
-            name = source;
+        foreach (var engine in engines) {
+            foreach (var source in source_list) {
+                if (engine.name == source) {
+                    string? name;
+                    string language;
+                    language = source;
+                    name = "%s - %s".printf (IBus.get_language_name (engine.language),
+                                                gettext_engine_longname (engine));
 
-            engine_button = new EngineButton (name, language, i, engine_button);
-            main_grid.add (engine_button);
-            i++;
+                    engine_button = new EngineButton (name, language, i, engine_button);
+                    main_grid.add (engine_button);
+                    i++;
+                }
+            }
         }
 
         main_grid.show_all ();
@@ -84,7 +95,7 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
         main_grid.get_children ().foreach ((child) => {
             if (child is EngineButton) {
                 var button = (EngineButton) child;
-                if (button.caption == source) {
+                if (button.code == source) {
                     engine_button = button;
                 }
             }
@@ -133,5 +144,20 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
 
     public bool has_engines () {
         return main_grid.get_children ().length () > 1;
+    }
+
+    // From https://github.com/ibus/ibus/blob/master/ui/gtk2/i18n.py#L47-L54
+    public string gettext_engine_longname (IBus.EngineDesc engine) {
+        string name = engine.name;
+        if (name.has_prefix ("xkb:")) {
+            return dgettext ("xkeyboard-config", engine.longname);
+        }
+
+        string textdomain = engine.textdomain;
+        if (textdomain == "") {
+            return engine.longname;
+        }
+
+        return dgettext (textdomain, engine.longname);
     }
 }
