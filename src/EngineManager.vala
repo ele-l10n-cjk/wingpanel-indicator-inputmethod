@@ -72,13 +72,10 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
         foreach (var engine in engines) {
             foreach (var source in source_list) {
                 if (engine.name == source) {
-                    string? name;
-                    string language;
-                    language = source;
-                    name = "%s - %s".printf (IBus.get_language_name (engine.language),
-                                                gettext_engine_longname (engine));
+                    string full_name = "%s - %s".printf (IBus.get_language_name (engine.language),
+                                                            gettext_engine_longname (engine));
 
-                    engine_button = new EngineButton (name, language, i, engine_button);
+                    engine_button = new EngineButton (source, full_name, i, engine_button);
                     main_grid.add (engine_button);
                     i++;
                 }

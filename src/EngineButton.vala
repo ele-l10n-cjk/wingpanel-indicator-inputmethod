@@ -17,20 +17,26 @@
 */
 
 public class InputMethod.Widgets.EngineButton : Wingpanel.Widgets.Container {
-    public uint32 id;
-    public string caption;
-    public string code;
+    public string code { get; construct; }
+    public string full_name { get; construct; }
+    public uint32 id { get; construct; }
+    public EngineButton? engine_button { get; construct; }
     public Gtk.RadioButton radio_button { get; private set; }
 
-    public EngineButton (string caption, string code, uint32 id, EngineButton? engine_button) {
-        radio_button = new Gtk.RadioButton.with_label_from_widget ((engine_button != null) ? engine_button.radio_button : null, caption);
+    public EngineButton (string code, string full_name, uint32 id, EngineButton? engine_button) {
+        Object (
+            code: code,
+            full_name: full_name,
+            id: id,
+            engine_button: engine_button
+        );
+    }
+
+    construct {
+        radio_button = new Gtk.RadioButton.with_label_from_widget ((engine_button != null) ? engine_button.radio_button : null, full_name);
         radio_button.active = (id == 0);
         radio_button.margin_start = 6;
         get_content_widget ().add (radio_button);
-
-        this.id = id;
-        this.caption = caption;
-        this.code = code;
 
         this.clicked.connect (() => {
             try {
