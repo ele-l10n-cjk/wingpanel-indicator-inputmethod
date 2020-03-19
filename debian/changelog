@@ -1,3 +1,9 @@
+wingpanel-indicator-inputmethod (1.0.0) bionic; urgency=medium
+
+  * First stable release.
+
+ -- Ryo Nakano <ryonakaknock3@gmail.com>  Thu, 19 Mar 2020 09:56:43 +0900
+
 wingpanel-indicator-inputmethod (0.1.0) bionic; urgency=low
 
   * Initial Release.
