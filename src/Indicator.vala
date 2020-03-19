@@ -108,6 +108,8 @@ public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorMan
         return null;
     }
 
+    IBus.init ();
+
     debug ("Activating InputMethod Indicator");
     var indicator = new InputMethod.Indicator ();
     return indicator;

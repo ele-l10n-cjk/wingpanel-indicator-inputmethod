@@ -34,7 +34,7 @@ public class InputMethod.Widgets.EngineButton : Wingpanel.Widgets.Container {
 
         this.clicked.connect (() => {
             try {
-                Process.spawn_command_line_sync ("ibus engine %s".printf (caption));
+                Process.spawn_command_line_sync ("ibus engine %s".printf (code));
                 radio_button.active = !radio_button.active;
             } catch (SpawnError err) {
                 warning (err.message);
