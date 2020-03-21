@@ -2,7 +2,7 @@
 
 ![Screenshot](data/screenshot.png?raw=true)
 
-Wingpanel Input Method Indicator is an additional Indicator for [Wingpanel](https://github.com/elementary/wingpanel) that allows you to choose current input method editor, which should be useful when you'd like to type Chinese, Japanese, and Korean.
+Wingpanel Input Method Indicator is an additional Indicator for [Wingpanel](https://github.com/elementary/wingpanel) that allows you to choose current input method engine, which should be useful when you'd like to type Chinese, Japanese, and Korean.
 
 This project tries to address https://github.com/elementary/os/issues/103.
 
