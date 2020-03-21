@@ -95,7 +95,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
         close ();
 
         try {
-            AppInfo.launch_default_for_uri ("settings://input/keyboard/layout", null);
+            AppInfo.launch_default_for_uri ("settings://input/inputmethod", null);
         } catch (Error e) {
             warning ("%s\n", e.message);
         }
