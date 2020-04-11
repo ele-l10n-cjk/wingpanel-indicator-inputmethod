@@ -22,9 +22,9 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
     private InputMethod.Widgets.EngineManager engines;
 
     public Indicator () {
-        Object (code_name: "input-method-indicator",
-                display_name: _("Input Method"),
-                description:_("The input method indicator"));
+        Object (
+            code_name: "input-method-indicator"
+        );
     }
 
     public override Gtk.Widget get_display_widget () {
