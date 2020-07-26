@@ -16,7 +16,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class InputMethod.Widgets.EngineButton : Wingpanel.Widgets.Container {
+public class InputMethod.Widgets.EngineButton : Gtk.Bin {
     public string code { get; construct; }
     public string full_name { get; construct; }
     public uint32 id { get; construct; }
@@ -33,18 +33,26 @@ public class InputMethod.Widgets.EngineButton : Wingpanel.Widgets.Container {
     }
 
     construct {
+        expand = true;
+
         radio_button = new Gtk.RadioButton.with_label_from_widget ((engine_button != null) ? engine_button.radio_button : null, full_name);
         radio_button.active = (id == 0);
-        radio_button.margin_start = 6;
-        get_content_widget ().add (radio_button);
 
-        this.clicked.connect (() => {
+        var modelbutton = new Gtk.ModelButton ();
+        modelbutton.get_child ().destroy ();
+        modelbutton.add (radio_button);
+
+        add (modelbutton);
+
+        modelbutton.button_release_event.connect (() => {
             try {
                 Process.spawn_command_line_sync ("ibus engine %s".printf (code));
                 radio_button.active = !radio_button.active;
             } catch (SpawnError err) {
                 warning (err.message);
             }
+
+            return Gdk.EVENT_STOP;
         });
     }
 }
