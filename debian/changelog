@@ -1,3 +1,10 @@
+wingpanel-indicator-inputmethod (1.1.0) bionic; urgency=medium
+
+  * Open the new Input Method view in Keyboard Plug
+  * Update translations
+
+ -- Ryo Nakano <ryonakaknock3@gmail.com>  Mon, 10 Aug 2020 08:30:22 +0900
+
 wingpanel-indicator-inputmethod (1.0.0) bionic; urgency=medium
 
   * First stable release.
