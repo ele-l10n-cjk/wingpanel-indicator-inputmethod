@@ -50,6 +50,8 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
                 if (current_button != null) {
                     display_icon.label = current_button.code[0:2];
                     current_button.radio_button.active = true;
+                } else {
+                    display_icon.label = "N/A";
                 }
 
                 var new_visibility = engines.has_engines ();
@@ -69,16 +71,33 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
+            var bus = new IBus.Bus ();
+
             main_grid = new Gtk.Grid ();
             main_grid.set_orientation (Gtk.Orientation.VERTICAL);
 
+            var no_daemon_runnning_alert = new Granite.Widgets.AlertView (
+                _("IBus Daemon is not running"),
+                _("Click \"Input Method Settings…\" to show available input method engines."),
+                ""
+            ) {
+                halign = Gtk.Align.CENTER,
+                valign = Gtk.Align.CENTER
+            };
+            no_daemon_runnning_alert.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+    
             var separator = new Wingpanel.Widgets.Separator ();
 
             var settings_button = new Gtk.ModelButton ();
             settings_button.text = _("Input Method Settings…");
             settings_button.clicked.connect (show_settings);
 
-            main_grid.add (engines);
+            if (bus.is_connected ()) {
+                main_grid.add (engines);
+            } else {
+                main_grid.add (no_daemon_runnning_alert);
+            }
+
             main_grid.add (separator);
             main_grid.add (settings_button);
             main_grid.show_all ();
