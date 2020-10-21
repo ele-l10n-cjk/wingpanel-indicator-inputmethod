@@ -85,7 +85,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
                 valign = Gtk.Align.CENTER
             };
             no_daemon_runnning_alert.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
-    
+
             var separator = new Wingpanel.Widgets.Separator ();
 
             var settings_button = new Gtk.ModelButton ();
