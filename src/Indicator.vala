@@ -98,8 +98,9 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
 
             var separator = new Wingpanel.Widgets.Separator ();
 
-            var settings_button = new Gtk.ModelButton ();
-            settings_button.text = _("Input Method Settings…");
+            var settings_button = new Gtk.ModelButton () {
+                text = _("Input Method Settings…")
+            };
             settings_button.clicked.connect (show_settings);
 
             main_grid.add (stack);
