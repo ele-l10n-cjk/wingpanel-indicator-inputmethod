@@ -51,7 +51,8 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
                     display_icon.label = current_button.code[0:2];
                     current_button.radio_button.active = true;
                 } else {
-                    display_icon.label = "N/A";
+                    ///TRANSLATORS: A string shown as the indicator icon when there are no input method engines added
+                    display_icon.label = _("N/A");
                 }
 
                 var new_visibility = engines.has_engines ();
