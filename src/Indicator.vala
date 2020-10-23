@@ -112,6 +112,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
     }
 
     public override void opened () {
+        // Update the visible view depending on whether IBus Daemon is running
         var bus = new IBus.Bus ();
         if (bus.is_connected ()) {
             stack.visible_child = engines;
