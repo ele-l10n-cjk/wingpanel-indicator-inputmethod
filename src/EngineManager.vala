@@ -48,19 +48,19 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
     }
 
     public override void get_preferred_height (out int minimum_height, out int natural_height) {
-        List<weak Gtk.Widget> children = main_grid.get_children ();
-        weak Gtk.Widget? first_child = children.first ().data;
-        if (first_child == null) {
+        List<weak Gtk.Widget?> children = main_grid.get_children ();
+        if (children == null) {
             minimum_height = 0;
             natural_height = 0;
-        } else {
-            var display = Gdk.Display.get_default ();
-            var monitor = display.get_primary_monitor ();
-            Gdk.Rectangle geom = monitor.get_geometry ();
-
-            main_grid.get_preferred_height (out minimum_height, out natural_height);
-            minimum_height = int.min (minimum_height, (int)(geom.height * 2 / 3));
+            return;
         }
+
+        var display = Gdk.Display.get_default ();
+        var monitor = display.get_primary_monitor ();
+        Gdk.Rectangle geom = monitor.get_geometry ();
+
+        main_grid.get_preferred_height (out minimum_height, out natural_height);
+        minimum_height = int.min (minimum_height, (int)(geom.height * 2 / 3));
     }
 
     private void populate_engines () {

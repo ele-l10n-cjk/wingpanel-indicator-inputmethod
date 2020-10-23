@@ -18,8 +18,12 @@
 
 public class InputMethod.Indicator : Wingpanel.Indicator {
     private Gtk.Grid main_grid;
+    private Gtk.Stack stack;
+
     private InputMethod.Widgets.InputMethodIcon display_icon;
     private InputMethod.Widgets.EngineManager engines;
+
+    private Granite.Widgets.AlertView no_daemon_runnning_alert;
 
     public Indicator () {
         Object (
@@ -72,12 +76,10 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
-            var bus = new IBus.Bus ();
-
             main_grid = new Gtk.Grid ();
             main_grid.set_orientation (Gtk.Orientation.VERTICAL);
 
-            var no_daemon_runnning_alert = new Granite.Widgets.AlertView (
+            no_daemon_runnning_alert = new Granite.Widgets.AlertView (
                 _("IBus Daemon is not running"),
                 _("Click \"Input Method Settings…\" to show available input method engines."),
                 ""
@@ -87,18 +89,20 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             };
             no_daemon_runnning_alert.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
 
+            stack = new Gtk.Stack () {
+                homogeneous = false
+            };
+            stack.add (engines);
+            stack.add (no_daemon_runnning_alert);
+            stack.show_all ();
+
             var separator = new Wingpanel.Widgets.Separator ();
 
             var settings_button = new Gtk.ModelButton ();
             settings_button.text = _("Input Method Settings…");
             settings_button.clicked.connect (show_settings);
 
-            if (bus.is_connected ()) {
-                main_grid.add (engines);
-            } else {
-                main_grid.add (no_daemon_runnning_alert);
-            }
-
+            main_grid.add (stack);
             main_grid.add (separator);
             main_grid.add (settings_button);
             main_grid.show_all ();
@@ -107,7 +111,14 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
         return main_grid;
     }
 
-    public override void opened () {}
+    public override void opened () {
+        var bus = new IBus.Bus ();
+        if (bus.is_connected ()) {
+            stack.visible_child = engines;
+        } else {
+            stack.visible_child = no_daemon_runnning_alert;
+        }
+    }
 
     public override void closed () {}
 
