@@ -81,7 +81,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
 
             no_daemon_runnning_alert = new Granite.Widgets.AlertView (
                 _("IBus Daemon is not running"),
-                _("Click \"Input Method Settings…\" to show available input method engines."),
+                _("Click \"Input Method Settings…\" to start IBus Daemon and show available input method engines here."),
                 ""
             ) {
                 halign = Gtk.Align.CENTER,
