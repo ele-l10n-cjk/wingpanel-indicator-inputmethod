@@ -51,7 +51,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
                     display_icon.label = current_button.code[0:2];
                     current_button.radio_button.active = true;
                 } else {
-                    ///TRANSLATORS: A string shown as the indicator icon when there are no input method engines added
+                    ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running
                     display_icon.label = _("N/A");
                 }
 
