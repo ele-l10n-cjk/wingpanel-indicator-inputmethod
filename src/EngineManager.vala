@@ -27,10 +27,12 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
     }
 
     construct {
-        main_grid = new Gtk.Grid ();
-        main_grid.orientation = Gtk.Orientation.VERTICAL;
-
         hscrollbar_policy = Gtk.PolicyType.NEVER;
+
+        main_grid = new Gtk.Grid () {
+            orientation = Gtk.Orientation.VERTICAL
+        };
+
         add (main_grid);
 
         settings = new GLib.Settings ("org.freedesktop.ibus.general");
