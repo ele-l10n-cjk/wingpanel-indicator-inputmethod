@@ -23,7 +23,6 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
     private Gtk.Grid main_grid;
 
     public EngineManager () {
-        populate_engines ();
     }
 
     construct {
@@ -37,9 +36,7 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
 
         settings = new GLib.Settings ("org.freedesktop.ibus.general");
         settings.changed["preload-engines"].connect (() => {
-            clear ();
-            populate_engines ();
-            updated ();
+            update_engines_list ();
         });
 
         settings.changed["engines-order"].connect_after (() => {
@@ -63,6 +60,12 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
 
         main_grid.get_preferred_height (out minimum_height, out natural_height);
         minimum_height = int.min (minimum_height, (int)(geom.height * 2 / 3));
+    }
+
+    public void update_engines_list () {
+        clear ();
+        populate_engines ();
+        updated ();
     }
 
     private void populate_engines () {

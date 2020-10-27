@@ -65,7 +65,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
                 }
             });
 
-            engines.updated ();
+            engines.update_engines_list ();
 
             var ibus_panel_settings = new Settings ("org.freedesktop.ibus.panel");
             ibus_panel_settings.bind ("show-icon-on-systray", this, "visible", SettingsBindFlags.DEFAULT);
@@ -117,6 +117,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
         var bus = new IBus.Bus ();
         if (bus.is_connected ()) {
             stack.visible_child = engines;
+            engines.update_engines_list ();
         } else {
             stack.visible_child = no_daemon_runnning_alert;
         }
