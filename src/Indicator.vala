@@ -50,14 +50,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
 
             engines = new InputMethod.Widgets.EngineManager ();
             engines.updated.connect (() => {
-                Widgets.EngineButton? current_button = engines.get_current_engine_button ();
-                if (current_button != null) {
-                    display_icon.label = current_button.code[0:2];
-                    current_button.radio_button.active = true;
-                } else {
-                    ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running
-                    display_icon.label = _("N/A");
-                }
+                update_display_icon ();
 
                 var new_visibility = engines.has_engines ();
                 if (new_visibility != visible) {
@@ -118,8 +111,13 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
         if (bus.is_connected ()) {
             stack.visible_child = engines;
             engines.update_engines_list ();
+
+            update_display_icon ();
         } else {
             stack.visible_child = no_daemon_runnning_alert;
+            ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
+            ///or no active input method engines
+            display_icon.label = _("N/A");
         }
     }
 
@@ -132,6 +130,18 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             AppInfo.launch_default_for_uri ("settings://input/keyboard/inputmethod", null);
         } catch (Error e) {
             warning ("%s\n", e.message);
+        }
+    }
+
+    private void update_display_icon () {
+        Widgets.EngineButton? current_button = engines.get_current_engine_button ();
+        if (current_button != null) {
+            display_icon.label = current_button.code[0:2];
+            current_button.radio_button.active = true;
+        } else {
+            ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
+            ///or no active input method engines
+            display_icon.label = _("N/A");
         }
     }
 }
