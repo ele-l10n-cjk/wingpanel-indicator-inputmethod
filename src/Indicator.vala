@@ -18,8 +18,12 @@
 
 public class InputMethod.Indicator : Wingpanel.Indicator {
     private Gtk.Grid main_grid;
+    private Gtk.Stack stack;
+
     private InputMethod.Widgets.InputMethodIcon display_icon;
     private InputMethod.Widgets.EngineManager engines;
+
+    private Granite.Widgets.AlertView no_daemon_runnning_alert;
 
     public Indicator () {
         Object (
@@ -46,11 +50,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
 
             engines = new InputMethod.Widgets.EngineManager ();
             engines.updated.connect (() => {
-                Widgets.EngineButton? current_button = engines.get_current_engine_button ();
-                if (current_button != null) {
-                    display_icon.label = current_button.code[0:2];
-                    current_button.radio_button.active = true;
-                }
+                update_display_icon ();
 
                 var new_visibility = engines.has_engines ();
                 if (new_visibility != visible) {
@@ -58,7 +58,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
                 }
             });
 
-            engines.updated ();
+            engines.update_engines_list ();
 
             var ibus_panel_settings = new Settings ("org.freedesktop.ibus.panel");
             ibus_panel_settings.bind ("show-icon-on-systray", this, "visible", SettingsBindFlags.DEFAULT);
@@ -72,13 +72,31 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             main_grid = new Gtk.Grid ();
             main_grid.set_orientation (Gtk.Orientation.VERTICAL);
 
+            no_daemon_runnning_alert = new Granite.Widgets.AlertView (
+                _("IBus Daemon is Not Running"),
+                _("Click \"Input Method Settings…\" to show available input method engines."),
+                ""
+            ) {
+                halign = Gtk.Align.CENTER,
+                valign = Gtk.Align.CENTER
+            };
+            no_daemon_runnning_alert.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+
+            stack = new Gtk.Stack () {
+                homogeneous = false
+            };
+            stack.add (engines);
+            stack.add (no_daemon_runnning_alert);
+            stack.show_all ();
+
             var separator = new Wingpanel.Widgets.Separator ();
 
-            var settings_button = new Gtk.ModelButton ();
-            settings_button.text = _("Input Method Settings…");
+            var settings_button = new Gtk.ModelButton () {
+                text = _("Input Method Settings…")
+            };
             settings_button.clicked.connect (show_settings);
 
-            main_grid.add (engines);
+            main_grid.add (stack);
             main_grid.add (separator);
             main_grid.add (settings_button);
             main_grid.show_all ();
@@ -87,7 +105,21 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
         return main_grid;
     }
 
-    public override void opened () {}
+    public override void opened () {
+        // Update the visible view depending on whether IBus Daemon is running
+        var bus = new IBus.Bus ();
+        if (bus.is_connected ()) {
+            stack.visible_child = engines;
+            engines.update_engines_list ();
+
+            update_display_icon ();
+        } else {
+            stack.visible_child = no_daemon_runnning_alert;
+            ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
+            ///or no active input method engines
+            display_icon.label = _("N/A");
+        }
+    }
 
     public override void closed () {}
 
@@ -98,6 +130,18 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             AppInfo.launch_default_for_uri ("settings://input/keyboard/inputmethod", null);
         } catch (Error e) {
             warning ("%s\n", e.message);
+        }
+    }
+
+    private void update_display_icon () {
+        Widgets.EngineButton? current_button = engines.get_current_engine_button ();
+        if (current_button != null) {
+            display_icon.label = current_button.code[0:2];
+            current_button.radio_button.active = true;
+        } else {
+            ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
+            ///or no active input method engines
+            display_icon.label = _("N/A");
         }
     }
 }
