@@ -32,7 +32,7 @@ public class InputMethod.Widgets.InputMethodIcon : Gtk.Label {
     }
 
     public string sanitize_label (owned string icon_label) {
-        var regex = /^xkb:(\w+)/;
+        var regex = /^xkb:(\w+)/; // vala-lint=space-before-paren
         MatchInfo match_info;
 
         if (regex.match (icon_label, 0, out match_info)) {
