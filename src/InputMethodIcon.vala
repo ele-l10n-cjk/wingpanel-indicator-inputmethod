@@ -30,4 +30,15 @@ public class InputMethod.Widgets.InputMethodIcon : Gtk.Label {
         style_context.add_class ("inputmethod-icon");
         style_context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
+
+    public string sanitize_label (owned string icon_label) {
+        var regex = /^xkb:(\w+)/;
+        MatchInfo match_info;
+
+        if (regex.match (icon_label, 0, out match_info)) {
+            icon_label = match_info.fetch (1);
+        }
+
+        return icon_label[0:2];
+    }
 }
