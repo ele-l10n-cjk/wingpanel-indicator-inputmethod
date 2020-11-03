@@ -23,7 +23,7 @@ msgstr "Il demone IBus non è in esecuzione"
 
 #: src/Indicator.vala:77
 msgid "Click \"Input Method Settings…\" to show available input method engines."
-msgstr "Fai clic su \"Impostazioni metodi di inserimento\" per visualizzare i metodi disponibili."
+msgstr "Fai clic su \"Impostazioni metodi di inserimento…\" per visualizzare i metodi disponibili."
 
 #: src/Indicator.vala:95
 msgid "Input Method Settings…"
