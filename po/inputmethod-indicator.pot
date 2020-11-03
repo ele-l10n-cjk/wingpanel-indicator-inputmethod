@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: inputmethod-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 06:39+0000\n"
+"POT-Creation-Date: 2020-11-03 08:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Indicator.vala:76
+#: src/Indicator.vala:69 src/Indicator.vala:112
 msgid "IBus Daemon is Not Running"
 msgstr ""
 
-#: src/Indicator.vala:77
+#: src/Indicator.vala:70 src/Indicator.vala:113
 msgid ""
 "Click \"Input Method Settings…\" to show available input method engines."
 msgstr ""
 
-#: src/Indicator.vala:95
+#: src/Indicator.vala:88
 msgid "Input Method Settings…"
 msgstr ""
 
 #. TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
 #. or no active input method engines
-#: src/Indicator.vala:120 src/Indicator.vala:144
+#: src/Indicator.vala:111 src/Indicator.vala:139
 msgid "N/A"
+msgstr ""
+
+#: src/Indicator.vala:140
+msgid "No Input Method Engines Added"
+msgstr ""
+
+#: src/Indicator.vala:141
+msgid "Click \"Input Method Settings…\" to add one."
 msgstr ""
