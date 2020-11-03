@@ -1,0 +1,42 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-03 06:39+0000\n"
+"PO-Revision-Date: 2020-11-03 08:40+0000\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Fabio Zaramella\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.3\n"
+
+#: data/inputmethod.appdata.xml.in:6
+msgid "Input Method Indicator"
+msgstr "Indicatore dei metodi di inserimento"
+
+#: data/inputmethod.appdata.xml.in:7
+msgid "The input method indicator"
+msgstr "L'indicatore dei metodi di inserimento"
+
+#: data/inputmethod.appdata.xml.in:12
+msgid "Open the new Input Method view in Keyboard Plug"
+msgstr "Apre la nuova scheda dei metodi di inserimento nelle impostazioni della tastiera"
+
+#: data/inputmethod.appdata.xml.in:13
+msgid "Update translations"
+msgstr "Traduzioni aggiornate"
+
+#: data/inputmethod.appdata.xml.in:20
+msgid "First stable release."
+msgstr "Primo rilascio stabile."
+
+#: data/inputmethod.appdata.xml.in:30
+msgid "CJK Kaizen Project for elementary OS (Unofficial)"
+msgstr "Progetto CJK Kaizen (non ufficiale) per elementary OS"
