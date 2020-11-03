@@ -136,7 +136,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
     private void update_display_icon () {
         Widgets.EngineButton? current_button = engines.get_current_engine_button ();
         if (current_button != null) {
-            display_icon.label = current_button.code[0:2];
+            display_icon.label = display_icon.sanitize_label (current_button.code);
             current_button.radio_button.active = true;
         } else {
             ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
