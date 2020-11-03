@@ -23,11 +23,12 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
     private InputMethod.Widgets.InputMethodIcon display_icon;
     private InputMethod.Widgets.EngineManager engines;
 
-    private Granite.Widgets.AlertView no_daemon_runnning_alert;
+    private Granite.Widgets.AlertView alert_view;
 
     public Indicator () {
         Object (
-            code_name: "input-method-indicator"
+            code_name: "input-method-indicator",
+            visible: true
         );
     }
 
@@ -51,17 +52,9 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             engines = new InputMethod.Widgets.EngineManager ();
             engines.updated.connect (() => {
                 update_display_icon ();
-
-                var new_visibility = engines.has_engines ();
-                if (new_visibility != visible) {
-                    visible = new_visibility;
-                }
             });
 
             engines.update_engines_list ();
-
-            var ibus_panel_settings = new Settings ("org.freedesktop.ibus.panel");
-            ibus_panel_settings.bind ("show-icon-on-systray", this, "visible", SettingsBindFlags.DEFAULT);
         }
 
         return display_icon;
@@ -72,7 +65,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             main_grid = new Gtk.Grid ();
             main_grid.set_orientation (Gtk.Orientation.VERTICAL);
 
-            no_daemon_runnning_alert = new Granite.Widgets.AlertView (
+            alert_view = new Granite.Widgets.AlertView (
                 _("IBus Daemon is Not Running"),
                 _("Click \"Input Method Settings…\" to show available input method engines."),
                 ""
@@ -80,13 +73,13 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
                 halign = Gtk.Align.CENTER,
                 valign = Gtk.Align.CENTER
             };
-            no_daemon_runnning_alert.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+            alert_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
 
             stack = new Gtk.Stack () {
                 homogeneous = false
             };
             stack.add (engines);
-            stack.add (no_daemon_runnning_alert);
+            stack.add (alert_view);
             stack.show_all ();
 
             var separator = new Wingpanel.Widgets.Separator ();
@@ -109,15 +102,15 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
         // Update the visible view depending on whether IBus Daemon is running
         var bus = new IBus.Bus ();
         if (bus.is_connected ()) {
-            stack.visible_child = engines;
             engines.update_engines_list ();
-
             update_display_icon ();
         } else {
-            stack.visible_child = no_daemon_runnning_alert;
+            stack.visible_child = alert_view;
             ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
             ///or no active input method engines
             display_icon.label = _("N/A");
+            alert_view.title = _("IBus Daemon is Not Running");
+            alert_view.description = _("Click \"Input Method Settings…\" to show available input method engines.");
         }
     }
 
@@ -136,12 +129,16 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
     private void update_display_icon () {
         Widgets.EngineButton? current_button = engines.get_current_engine_button ();
         if (current_button != null) {
+            stack.visible_child = engines;
             display_icon.label = current_button.code[0:2];
             current_button.radio_button.active = true;
         } else {
+            stack.visible_child = alert_view;
             ///TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
             ///or no active input method engines
             display_icon.label = _("N/A");
+            alert_view.title = _("No Input Method Engines Added");
+            alert_view.description = _("Click \"Input Method Settings…\" to add one.");
         }
     }
 }
