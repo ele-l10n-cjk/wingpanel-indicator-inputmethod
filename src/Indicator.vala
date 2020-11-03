@@ -130,7 +130,7 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
         Widgets.EngineButton? current_button = engines.get_current_engine_button ();
         if (current_button != null) {
             stack.visible_child = engines;
-            display_icon.label = current_button.code[0:2];
+            display_icon.label = display_icon.sanitize_label (current_button.code);
             current_button.radio_button.active = true;
         } else {
             stack.visible_child = alert_view;
