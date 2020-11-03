@@ -8,12 +8,12 @@ msgstr ""
 "Project-Id-Version: inputmethod-indicator\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-03 06:39+0000\n"
-"PO-Revision-Date: 2020-11-03 08:27+0000\n"
+"PO-Revision-Date: 2020-11-03 08:44+0000\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: \n"
+"Last-Translator: Fabio Zaramella\n"
 "Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
@@ -27,7 +27,7 @@ msgstr "Fai clic su \"Impostazioni metodi di inserimento\" per visualizzare i me
 
 #: src/Indicator.vala:95
 msgid "Input Method Settings…"
-msgstr "Impostazioni metodi di inserimento"
+msgstr "Impostazioni metodi di inserimento…"
 
 #. TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
 #. or no active input method engines
