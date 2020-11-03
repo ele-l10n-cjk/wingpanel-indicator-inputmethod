@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: inputmethod-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 06:38+0000\n"
+"POT-Creation-Date: 2020-11-03 06:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,8 +30,8 @@ msgstr ""
 msgid "Input Method Settings…"
 msgstr ""
 
-#. /TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
-#. /or no active input method engines
+#. TRANSLATORS: A string shown as the indicator icon when IBus Daemon is not running,
+#. or no active input method engines
 #: src/Indicator.vala:120 src/Indicator.vala:144
 msgid "N/A"
 msgstr ""
