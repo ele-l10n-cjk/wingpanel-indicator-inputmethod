@@ -148,10 +148,6 @@ public class InputMethod.Widgets.EngineManager : Gtk.ScrolledWindow {
         });
     }
 
-    public bool has_engines () {
-        return main_grid.get_children ().length () > 1;
-    }
-
     // From https://github.com/ibus/ibus/blob/master/ui/gtk2/i18n.py#L47-L54
     public string gettext_engine_longname (IBus.EngineDesc engine) {
         string name = engine.name;
