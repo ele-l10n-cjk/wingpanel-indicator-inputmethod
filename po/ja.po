@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: inputmethod-indicator\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-03 08:52+0000\n"
-"PO-Revision-Date: 2020-03-21 09:31+0900\n"
+"PO-Revision-Date: 2020-11-15 20:56+0900\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ja\n"
@@ -20,12 +20,11 @@ msgstr ""
 
 #: src/Indicator.vala:69 src/Indicator.vala:112
 msgid "IBus Daemon is Not Running"
-msgstr ""
+msgstr "IBus Daemon が起動していません"
 
 #: src/Indicator.vala:70 src/Indicator.vala:113
-msgid ""
-"Click \"Input Method Settings…\" to show available input method engines."
-msgstr ""
+msgid "Click \"Input Method Settings…\" to show available input method engines."
+msgstr "利用可能な IME を表示するには、\"インプットメソッドの設定…\" をクリックしてください。"
 
 #: src/Indicator.vala:88
 msgid "Input Method Settings…"
@@ -35,14 +34,12 @@ msgstr "インプットメソッドの設定…"
 #. or no active input method engines
 #: src/Indicator.vala:111 src/Indicator.vala:139
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: src/Indicator.vala:140
-#, fuzzy
 msgid "No Input Method Engines Added"
-msgstr "インプットメソッドの設定…"
+msgstr "IME が追加されていません"
 
 #: src/Indicator.vala:141
-#, fuzzy
 msgid "Click \"Input Method Settings…\" to add one."
-msgstr "インプットメソッドの設定…"
+msgstr "追加するには、\"インプットメソッドの設定…\" をクリックしてください。"

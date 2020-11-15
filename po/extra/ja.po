@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-03 08:52+0000\n"
-"PO-Revision-Date: 2020-03-21 09:31+0900\n"
+"PO-Revision-Date: 2020-11-15 20:59+0900\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ja\n"
@@ -28,15 +28,15 @@ msgstr "インプットメソッドインジケーター"
 
 #: data/inputmethod.appdata.xml.in:12
 msgid "Open the new Input Method view in Keyboard Plug"
-msgstr ""
+msgstr "キーボードプラグに新たに追加されたインプットメソッドビューを開くように変更"
 
 #: data/inputmethod.appdata.xml.in:13
 msgid "Update translations"
-msgstr ""
+msgstr "翻訳を更新"
 
 #: data/inputmethod.appdata.xml.in:20
 msgid "First stable release."
-msgstr ""
+msgstr "最初の安定版リリースです。"
 
 #: data/inputmethod.appdata.xml.in:30
 msgid "CJK Kaizen Project for elementary OS (Unofficial)"
