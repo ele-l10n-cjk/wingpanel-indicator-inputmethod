@@ -82,7 +82,10 @@ public class InputMethod.Indicator : Wingpanel.Indicator {
             stack.add (alert_view);
             stack.show_all ();
 
-            var separator = new Wingpanel.Widgets.Separator ();
+            var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL) {
+                margin_top = 3,
+                margin_bottom = 3
+            };
 
             var settings_button = new Gtk.ModelButton () {
                 text = _("Input Method Settings…")
