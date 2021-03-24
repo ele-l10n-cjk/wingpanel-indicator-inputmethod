@@ -1,3 +1,12 @@
+wingpanel-indicator-inputmethod (1.2.0) bionic; urgency=medium
+
+  * Tell users if IBus Daemon is not running
+  * Display country codes for xkb/m17n layouts
+  * Keep the indicator always visible and tell if no engines
+  * Update translations
+
+ -- Ryo Nakano <ryonakaknock3@gmail.com>  Wed, 24 Mar 2021 11:00:37 +0900
+
 wingpanel-indicator-inputmethod (1.1.0) bionic; urgency=medium
 
   * Open the new Input Method view in Keyboard Plug
