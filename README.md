@@ -1,5 +1,8 @@
 # Wingpanel Input Method Indicator
 
+> ### This Component Has Been Deprecated
+> The functions provided in this Indicator were merged into the official Keyboard Indicator. It now shows both xkb layouts and input method engines.
+
 ![Screenshot](data/screenshot.png?raw=true)
 
 Wingpanel Input Method Indicator is an additional Indicator for [Wingpanel](https://github.com/elementary/wingpanel) that allows you to choose current input method engine, which should be useful when you'd like to type Chinese, Japanese, and Korean.
