@@ -6,6 +6,16 @@
   <name>Input Method Indicator</name>
   <summary>The input method indicator</summary>
   <releases>
+    <release version="1.2.0" date="2021-03-24" urgency="medium">
+      <description>
+        <ul>
+          <li>Tell users if IBus Daemon is not running</li>
+          <li>Display country codes for xkb/m17n layouts</li>
+          <li>Keep the indicator always visible and tell if no engines</li>
+          <li>Update translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.1.0" date="2020-08-10" urgency="medium">
       <description>
         <ul>
